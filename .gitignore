@@ -219,3 +219,6 @@ __marimo__/
 # gitignore
 .gitignore
 default.env
+
+# vscode 
+.vscode/
