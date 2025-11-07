@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-
-app = FastAPI(docs_url="/", title="Atlas API", description="API for Atlas application")
+from atlas.config.api import fast_api_settings
+app = FastAPI(**fast_api_settings.model_dump())
 
 @app.get("/main")
 def main():
