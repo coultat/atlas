@@ -52,40 +52,30 @@ quote-style = "double"
 
 
 [tool.mypy]
-# Python-Version
-python_version = "3.11"
+# === Configuraciones Centrales/Recomendadas ===
 
+# Habilita el modo estricto (combina varias opciones strictas).
 strict = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-check_untyped_defs = true
-disallow_untyped_decorators = true
-no_implicit_optional = true
+
+# Permite que mypy siga importaciones a módulos sin anotaciones de tipo (esencial para librerías de terceros).
+ignore_missing_imports = true
+
+# === Opciones Strict que 'strict = true' incluye pero que puedes personalizar ===
+# Si quieres un control más granular, puedes descomentar y ajustar estas.
+
+warn_unused_configs = true
 warn_redundant_casts = true
 warn_unused_ignores = true
-warn_no_return = true
+warn_return_any = true
 warn_unreachable = true
 
-# Weitere wichtige Einstellungen
-show_error_codes = true
-warn_return_any = true
-warn_unused_configs = true
-enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+# Disallow specific untyped situations (useful for strict codebases)
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
 
-# Ignorieren bestimmter Fehler
-disable_error_code = []
-
-# Pfade ausschließen
-exclude = [
-    ".*/__pycache__/",
-    ".*/migrations/",
-    ".*/tests/",
-]
-
-# Plattform-spezifische Einstellungen
-platform = "linux"
-
-# Cache für bessere Performance
-cache_dir = ".mypy_cache"
-
-# Für bestimmte Bibliotheken
+# Ensure all functions have explicit return types
+explicit_package_bases = true # Util si tu proyecto usa src/ directory
+check_untyped_defs = true
+show_error_codes = true # Muestra códigos como [import-untyped]
