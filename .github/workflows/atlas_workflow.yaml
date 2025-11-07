@@ -1,8 +1,0 @@
-on: push
-
-jobs:
-  say_hello:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Say Hello
-        run: echo "Hello, hello who put love in my head? I know, I know it's made of led"
