@@ -148,6 +148,7 @@ activemq-data/
 *.sage.py
 
 # Environments
+default.env
 .env
 .envrc
 .venv
@@ -214,3 +215,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# gitignore
+.gitignore
+default.env
