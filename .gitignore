@@ -215,3 +215,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# gitignore
+.gitignore
+default.env
+
+# vscode 
+.vscode/
