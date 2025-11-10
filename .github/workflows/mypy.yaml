@@ -1,0 +1,17 @@
+name: Type check
+
+on: push
+
+jobs:
+  mypy:
+    name: Run Mypy with Python 3.12
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - run: echo "Project will be type-checked"
+      - run: python --version 
+      - run: pip install -r requirements.txt
+      - run: mypy src/atlas/ tests/
