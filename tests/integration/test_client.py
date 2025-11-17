@@ -1,11 +1,12 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock
 from src.atlas.apis.spotify.client import SpotifyClient
+from typing import Self
 
 class TestSpotifyClientMocks:
     
     @pytest.mark.asyncio
-    async def test_spotify_client_connect_with_mock(self):
+    async def test_spotify_client_connect_with_mock(self: Self) -> None:
         """Test que simula una conexión exitosa a Spotify"""
         # Crear un MagicMock completo de SpotifyClient
         mock_client = MagicMock(spec=SpotifyClient)
@@ -35,7 +36,7 @@ class TestSpotifyClientMocks:
         mock_client.connect.assert_called_once()
     
     @pytest.mark.asyncio
-    async def test_spotify_client_get_artist_with_mock(self):
+    async def test_spotify_client_get_artist_with_mock(self: Self) -> None:
         """Test que simula obtener información de un artista"""
         # Crear mock completo
         mock_client = MagicMock(spec=SpotifyClient)
