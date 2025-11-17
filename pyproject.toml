@@ -2,6 +2,10 @@
 pythonpath = ["./src"]
 testpaths = ["tests"]
 addopts = "--import-mode=append --tb=short"
+filterwarnings = [
+    "ignore::pytest.PytestUnknownMarkWarning",
+]
+
 [tool.ruff]
 
 exclude = [
