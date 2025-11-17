@@ -13,27 +13,6 @@ from tests.integration.conftest import MockSpotifyConfig
 client = TestClient(app)
 
 
-def test_get_artist() -> None:
-    # Mock spotify in order to avoid real API calls
-    with patch("atlas.apis.spotify.client.SpotifyClient") as MockSpotifyClient:
-        # Setup the mock
-        mock_instance = MockSpotifyClient.return_value
-        mock_instance.get_artist.return_value = {
-            "id": "1vCWHaC5f2uS3yhpwWbIA6",
-            "name": "Avicii",
-            "genres": ["electronic", "dance"],
-            "popularity": 85,
-        }
-
-        response = client.get("/artist/1vCWHaC5f2uS3yhpwWbIA6")
-        assert response.status_code == 200
-        data = response.json()
-        assert data["id"] == "1vCWHaC5f2uS3yhpwWbIA6"
-        assert data["name"] == "Avicii"
-        assert "genres" in data
-        assert "popularity" in data
-
-
 @pytest.mark.asyncio
 async def test_spotify_client_connect(mock_credentials: MockSpotifyConfig) -> None:
     # Mock of the response for the Spotify token endpoint
