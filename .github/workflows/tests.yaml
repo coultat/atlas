@@ -7,6 +7,11 @@ jobs:
     name: Run Tests with Python 3.12
     runs-on: ubuntu-latest
     steps:
+      - name: Configure PYTHONPATH
+        run: |
+          echo "PYTHONPATH=$GITHUB_WORKSPACE/src" >> $GITHUB_ENV
+
+          
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
