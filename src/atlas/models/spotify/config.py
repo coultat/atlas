@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, SettingsConfigDict, Field
 
 from atlas.config.path import BASE_DIR
 
@@ -12,8 +12,8 @@ class SpotifyConfig(BaseSettings):
         case_sensitive=False,
     )
 
-    client_id: str
-    secret: str
+    client_id: str = Field(default="")
+    secret: str = Field(default="")
 
 
 async def get_spotify_config() -> SpotifyConfig:
