@@ -9,9 +9,9 @@ jobs:
     steps:
       - name: Configure PYTHONPATH
         run: |
-          echo "PYTHONPATH=$GITHUB_WORKSPACE/src" >> $GITHUB_ENV
+          echo "PYTHONPATH=$GITHUB_WORKSPACE/tests" >> $GITHUB_ENV
 
-          
+
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
