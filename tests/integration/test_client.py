@@ -1,19 +1,20 @@
-from src.atlas.apis.spotify.client import SpotifyConfig
-from httpx import Response
-import json
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 import pytest
+from httpx import Response
+
 from atlas.apis.spotify.client import SpotifyClient
+from atlas.models.spotify.config import SpotifyConfig
 from tests.integration.conftest import artist_response
 
 
 class TestSpotifyClientMocks:
     @patch("src.atlas.apis.base_api_client.AsyncClient.send")
     @pytest.mark.asyncio
-    async def test_spotify_client_complete_flow(self, mock_send):
-        # Configurar diferentes respuestas para diferentes llamadas
+    async def test_spotify_client_complete_flow(self, mock_send: MagicMock) -> None:
+        # Sets up different responses for connect() and get_artist()
         mock_responses = [
-            # Primera llamada: connect() - token
+            # First call: connect() - token
             MagicMock(
                 spec=Response,
                 status_code=200,
@@ -26,7 +27,7 @@ class TestSpotifyClientMocks:
                 ),
                 raise_for_status=MagicMock(),
             ),
-            # Segunda llamada: get_artist() - datos artista
+            # Second call: get_artist() - artist data
             MagicMock(
                 spec=Response,
                 status_code=200,
@@ -36,19 +37,19 @@ class TestSpotifyClientMocks:
         ]
         mock_send.side_effect = mock_responses
 
-        # Crear instancia REAL con credenciales falsas
+        # Instances with fake credentials
         fake_credentials = SpotifyConfig(
             client_id="fake_client_id", secret="fake_secret"
         )
         client = SpotifyClient(fake_credentials)
 
-        # Probar connect()
+        # test connect
         await client.connect()
         assert client.token == "mock_token_123"
 
-        # Probar get_artist()
+        # Test get_artist()
         artist = await client.get_artist("1vCWHaC5f2uS3yhpwWbIA6")
         assert artist.name == "Avicii"
 
-        # Verificar llamadas
+        # Amount of calls
         assert mock_send.call_count == 2
