@@ -7,11 +7,18 @@ jobs:
     name: Run Tests with Python 3.12
     runs-on: ubuntu-latest
     steps:
+      - name: Configure PYTHONPATH
+        run: |
+          echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
+
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: '3.12'
       - run: echo "Project will be tested"
       - run: python --version 
+      - run: pip install pytest-asyncio
+      - run: pip install pytest-httpx
       - run: pip install -r requirements.txt
       - run: pytest

@@ -2,6 +2,10 @@
 pythonpath = ["./src"]
 testpaths = ["tests"]
 addopts = "--import-mode=append --tb=short"
+filterwarnings = [
+    "ignore::pytest.PytestUnknownMarkWarning",
+]
+
 [tool.ruff]
 
 exclude = [
@@ -74,6 +78,7 @@ disallow_untyped_calls = true
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
 disallow_untyped_decorators = true
+disallow_subclassing_any = false
 
 # Ensure all functions have explicit return types
 explicit_package_bases = true # Util si tu proyecto usa src/ directory
