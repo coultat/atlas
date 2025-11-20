@@ -12,13 +12,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+    - uses: docker/setup-buildx-action@v3
 
     - name: Build Docker image
-    - run: docker build -t my-app:${{ github.sha }} .
+    - run: docker build -t atlas_app:${{ github.sha }} .
 
     - name: Run tests inside Docker container
-    - run: docker run --rm my-app:${{ github.sha }} pytest
+    - run: docker run --rm atlas_app:${{ github.sha }} pytest
