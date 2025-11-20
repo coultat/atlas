@@ -34,4 +34,4 @@ jobs:
           -e PYTHONPATH=/app/src:/app/tests \
           -w /app \
           atlas_app:${{ github.sha }} \
-          python -c "import sys; print(sys.path); import atlas" && pytest
+          sh -c "python -c 'import sys; print(sys.path); import atlas' && pytest"
