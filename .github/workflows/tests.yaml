@@ -32,6 +32,8 @@ jobs:
     - run: |
         docker run --rm \
           -e PYTHONPATH=/app/src:/app/tests \
+          -e SPOTIFY_CLIENT_ID=test_client_id \
+          -e SPOTIFY_SECRET=test_secret \
           -w /app \
           atlas_app:${{ github.sha }} \
-          sh -c "python -c 'import sys; print(sys.path); import atlas' && pytest"
+          sh -c "python -c 'import atlas' && pytest"
