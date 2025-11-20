@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - run: echo "Checkout code"
     - uses: actions/checkout@v4
 
-    - name: Set up Docker Buildx
+    - run: echo "Set up Docker Buildx"
     - uses: docker/setup-buildx-action@v3
 
-    - name: Build Docker image
+    - run: echo "Build Docker image"
     - run: docker build -t atlas_app:${{ github.sha }} .
 
-    - name: Run tests inside Docker container
+    - run: echo "Run tests inside Docker container"
     - run: docker run --rm atlas_app:${{ github.sha }} pytest
