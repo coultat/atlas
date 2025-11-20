@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=development
+      - PYTHONPATH=/app/src
+    volumes:
+      - .:/app
+    command: uvicorn atlas.app.app:app --host 0.0.0.0 --port 8000 --reload

@@ -2,14 +2,14 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 from httpx import Response
+from integration.conftest import artist_response
 
 from atlas.apis.spotify.client import SpotifyClient
 from atlas.models.spotify.config import SpotifyConfig
-from tests.integration.conftest import artist_response
 
 
 class TestSpotifyClientMocks:
-    @patch("src.atlas.apis.base_api_client.AsyncClient.send")
+    @patch("atlas.apis.base_api_client.AsyncClient.send")
     @pytest.mark.asyncio
     async def test_spotify_client_complete_flow(self, mock_send: MagicMock) -> None:
         # Sets up different responses for connect() and get_artist()
