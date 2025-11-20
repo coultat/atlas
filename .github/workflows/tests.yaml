@@ -20,7 +20,7 @@ jobs:
     - run: echo "Build Docker image"
     - run: docker build -t atlas_app:${{ github.sha }} .
 
-    -run: echo "Install requirements for testing"
+    - run: echo "Install requirements for testing"
     - run: |
         docker run --rm \
           -e PYTHONPATH=/app/src:/app/tests \
