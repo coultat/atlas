@@ -5,7 +5,7 @@ from httpx import Response
 
 from atlas.apis.spotify.client import SpotifyClient
 from atlas.models.spotify.config import SpotifyConfig
-from tests.integration.conftest import artist_response
+from integration.conftest import artist_response
 
 
 class TestSpotifyClientMocks:
